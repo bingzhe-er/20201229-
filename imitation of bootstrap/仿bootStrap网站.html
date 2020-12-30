@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仿bootStrap网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 微软雅黑;
+            text-decoration: none;
+        }
+
+        .active {
+            display: inline-block;
+            border-radius: 50%;
+            width: 6px;
+            height: 6px;
+            background-color: red;
+            vertical-align: text-top;
+        }
+
+        .header {
+            width: 100%;
+            height: 45px;
+            background-color: rgb(34, 34, 34);
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-family: 微软雅黑;
+        }
+
+        .headercontainer {
+            margin: 0, auto;
+            display: flex;
+            flex-grow: row;
+            justify-content: center;
+        }
+
+        .header ul {
+            align-items: center;
+        }
+
+        .header ul li {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+
+        .header a:hover {
+            color: rgb(255, 255, 255);
+        }
+
+        .header a {
+            color: rgb(157, 157, 157);
+            text-decoration: none;
+        }
+
+        .folderlists {
+            display: none;
+            position: fixed;
+            top: 45px;
+            left: 0;
+            background-color: black;
+            height: 50px;
+            z-index: 100;
+            color: rgb(255, 255, 255);
+
+        }
+
+        .banner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column;
+            height: 570px;
+            width: 100%;
+            background-image: url(./壁纸.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .banner h1 {
+            font-family: 微软雅黑;
+            font-size: 100px;
+            color: rgb(255, 255, 255);
+        }
+
+        .banner p {
+            font-family: 微软雅黑;
+            font-size: 30px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+        }
+
+        .banner button {
+            background-color: lightblue;
+            width: 280px;
+            height: 60px;
+            box-shadow: inset 0 -3px darkblue;
+            border-radius: 0.8em;
+            cursor: pointer;
+            transition: background-color 200ms;
+            color: rgb(255, 255, 255);
+
+        }
+
+        .banner button:hover {
+            background-color: royalblue;
+        }
+
+        .banner a {
+            display: inline-block;
+            color: darkgray;
+            text-decoration: none;
+
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            flex-flow: column;
+        }
+
+        .recommend {
+            display: flex;
+            align-items: center;
+            flex-flow: column;
+        }
+
+        .collection {
+            margin-top: 30px;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            flex-flow: row;
+            flex-wrap: wrap;
+        }
+
+        .example {
+            margin: 15px;
+            box-sizing: border-box;
+            padding: 2px;
+            width: 250px;
+            height: 350px;
+            border: 1px solid lightgray;
+        }
+
+        .example img {
+            width: 100%;
+        }
+
+        .example div:nth-child(2) {
+            display: flex;
+            align-items: center;
+            flex-flow: column;
+            text-align: center;
+        }
+
+        .example h4 {
+            font-size: 30px;
+            font-weight: 400;
+            color: darkblue;
+        }
+
+        .example h5 {
+            margin-top: 10px;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        .example p {
+            margin-top: 10px;
+            font-size: 15px;
+            font-weight: 100;
+        }
+
+        .footer {
+            margin-top: 90px;
+            border-top: 1px solid lightgray;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footercontainer {
+            padding-top: 50px;
+            width: 70%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .brief {
+            flex: 1;
+            font-size: 14px;
+            color: darkgray;
+        }
+
+        .list {
+            flex: 1;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .list ul {
+            list-style: none;
+            max-width: 80px;
+            font-size: 14px;
+        }
+
+        .list ul li:nth-child(1) {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .list a {
+            color: darkgrey;
+        }
+
+        .list a:hover {
+            text-decoration: underline;
+        }
+
+        .footerline {
+            margin-top: 30px;
+            width: 100%;
+            border-bottom: 1px solid lightgray;
+            height: 1px;
+        }
+
+        .footerlinetext {
+            margin-top: 10px;
+            margin-bottom: 30px;
+            color: darkgrey;
+            font-size: 13px;
+        }
+
+        .footerlinetext a {
+            color: darkgrey;
+        }
+
+
+        @media only screen and (max-width: 768px) {
+            .headercontainer {
+                display: flex;
+                justify-content: space-between;
+                line-height: 45px;
+            }
+
+            .header ul li {
+                display: none;
+            }
+
+            #homepagelink {
+                display: block;
+                margin-left: 10px;
+            }
+
+            #rightheaderabout {
+                display: none;
+            }
+
+            .rightheader {
+                display: flex;
+            }
+
+            .folderbutton {
+                margin-top: 6px;
+                margin-right: 10px;
+                border-radius: 0.5em;
+                border: 0.5px solid darkgray;
+                width: 40px;
+                height: 30px;
+
+            }
+
+            .folderbutton:hover {
+                background-color: rgb(51, 51, 51);
+            }
+
+            .folderbutton a:active .folderlists {
+                display: block;
+            }
+
+            .folderbutton a {
+                display: inline-block;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 2px
+            }
+
+            .folderbutton div {
+                margin-top: 4px;
+                border-bottom: 3px solid darkgrey;
+                width: 20px;
+            }
+
+            .banner h1 {
+                font-family: 微软雅黑;
+                font-size: 60px;
+                color: rgb(255, 255, 255);
+            }
+
+            .banner p {
+                margin-top: 20px;
+                font-family: 微软雅黑;
+                font-size: 19px;
+                font-weight: 100;
+                color: rgb(255, 255, 255);
+                text-align: center;
+            }
+
+            .banner button {
+                margin-top: 20px;
+                background-color: lightblue;
+                width: 280px;
+                height: 60px;
+                box-shadow: inset 0 -3px darkblue;
+                border-radius: 0.8em;
+                cursor: pointer;
+                transition: background-color 200ms;
+                color: rgb(255, 255, 255);
+                font-size: 17px;
+
+            }
+
+            .banner button:hover {
+                background-color: royalblue;
+            }
+
+            .banner a {
+                margin-top: 5px;
+                display: inline-block;
+                color: darkgray;
+                text-decoration: none;
+                font-size: 14px;
+
+            }
+            .recommend h3 {
+                margin-top: 40px;
+                font-size: 30px;
+                font-weight: 500;
+            }
+
+            .recommend p {
+                margin-top: 10px;
+                font-size: 12px;
+                font-weight: 100;
+            }
+
+            .recommendbottomline {
+                margin-top: 10px;
+                width: 100%;
+                border-bottom: 1px solid lightgray;
+            }
+        }
+
+
+
+        @media only screen and (min-width:768px) and (max-width: 992px) {
+            .leftheader {
+                line-height: 45px;
+            }
+
+            .leftheader ul {
+                justify-content: center;
+                flex-direction: row;
+            }
+
+            .rightheader {
+                line-height: 45px;
+                display: none;
+            }
+
+            .leftheader {
+                flex-grow: 2;
+            }
+
+            .header ul {
+                margin: auto 40px;
+                display: flex;
+                justify-content: space-between;
+                font-size: 13px;
+
+            }
+
+            .header ul li:nth-child(1) {
+                display: none;
+            }
+
+            .header ul li {
+                display: inline-block;
+                margin-right: 10px;
+
+            }
+
+            .banner h1 {
+                font-size: 80px;
+            }
+
+            .banner p {
+                margin: 20px auto;
+                font-size: 25px;
+            }
+
+            .banner button {
+                margin-top: 10px;
+                font-size: 17px;
+                color: rgb(255, 255, 255);
+
+            }
+
+            .banner a {
+                margin-top: 5px;
+                font-size: 13px;
+            }
+
+            .recommend h3 {
+                margin-top: 40px;
+                font-size: 30px;
+                font-weight: 500;
+            }
+
+            .recommend p {
+                margin-top: 10px;
+                font-size: 14px;
+                font-weight: 100;
+            }
+
+            .recommendbottomline {
+                margin-top: 10px;
+                width: 600px;
+                border-bottom: 1px solid lightgray;
+            }
+        }
+
+        @media only screen and (min-width:992px) {
+            .leftheader {
+                margin: auto 0 40px;
+                flex: 13;
+            }
+
+            .header ul {
+                margin-left: 20px;
+                display: flex;
+                justify-content: center;
+                font-size: 13px;
+                line-height: 45px;
+                flex-wrap: nowrap;
+            }
+
+            .header ul li:nth-child(1) {
+                font-size: 18px;
+            }
+
+            .header ul li {
+                flex-wrap: nowrap;
+                display: inline-block;
+                margin-right: 35px;
+            }
+
+            .rightheader .folder {
+                display: none;
+            }
+
+            .rightheader {
+                flex: 1;
+                margin-right: 0px;
+                float: right;
+                line-height: 45px;
+            }
+
+            .rightheader a {
+                display: inline-block;
+                text-align: right;
+                font-size: 13px;
+                min-width: 20px;
+            }
+
+            .banner p {
+                margin: 20px auto;
+            }
+
+            .banner button {
+                margin-top: 10px;
+                font-size: 17px;
+                color: rgb(255, 255, 255);
+
+            }
+
+            .banner a {
+                margin-top: 5px;
+                font-size: 13px;
+            }
+
+            .recommend h3 {
+                margin-top: 40px;
+                font-size: 40px;
+                font-weight: 500;
+            }
+
+            .recommend p {
+                margin-top: 10px;
+                font-size: 14px;
+                font-weight: 100;
+            }
+
+            .recommendbottomline {
+                margin-top: 10px;
+                width: 600px;
+                border-bottom: 1px solid lightgray;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="headercontainer">
+            <div class="leftheader">
+                <ul id="headerList">
+                    <li id="homepagelink"><a href="javascript:;">BootStrap中文网</a>
+                        <div></div>
+                    </li>
+                    <li><a href="javascript:;">BootStrap3中文文档</a>
+                        <div></div>
+                    </li>
+                    <li><a href="javascript:;">BootStrap4中文文档</a>
+                        <div></div>
+                    </li>
+                    <li><a href="javascript:;">Sass教程</a>
+                        <div></div>
+                    </li>
+                    <li><a href="javascript:;">Less教程</a>
+                        <div></div>
+                    </li>
+                    <li><a href="javascript:;">jquery API</a>
+                        <div></div>
+                    </li>
+                    <li><a href="javascript:;">网站实例</a>
+                        <div class="active"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="rightheader">
+                <div id="rightheaderabout">
+                    <a href="javascript:;">关于</a>
+                </div>
+                <div class="folder">
+                    <div class="folderbutton"><a href="javascript:;">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </a></div>
+                    <ul class="folderlists">
+                        <li><a href="javascript:;">BootStrap3中文文档</a>
+                            <div></div>
+                        </li>
+                        <li><a href="javascript:;">BootStrap4中文文档</a>
+                            <div></div>
+                        </li>
+                        <li><a href="javascript:;">Sass教程</a>
+                            <div></div>
+                        </li>
+                        <li><a href="javascript:;">Less教程</a>
+                            <div></div>
+                        </li>
+                        <li><a href="javascript:;">jquery API</a>
+                            <div></div>
+                        </li>
+                        <li><a href="javascript:;">网站实例</a>
+                            <div></div>
+                        </li>
+                        <li><a href="javascript:;">关于</a>
+                            <div></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="banner">
+        <img src="" alt="">
+        <h1>Bootstrap</h1>
+        <p>简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。</p>
+        <button>Bootstrap3中文文档(v3.3.7)</button>
+        <a href="">Bootstrap2中文文档(v2.3.2)</a>
+    </div>
+    <div class="container">
+        <div class="recommend">
+            <h3>Bootstrap相关优质项目推荐</h3>
+            <p>这些项目或者是对Bootstrap进行了有益的补充，或者是基于Bootstrap开发的</p>
+            <div class="recommendbottomline"></div>
+        </div>
+        <div class="collection">
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+
+
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+            <div class="example">
+                <div class="exampletop">
+                    <img src="bootstrap网站实例.png" alt="" title="BootStrap网站优选">
+                </div>
+                <div>
+                    <h4>优站精选</h4>
+                    <h5>BootStrap网站实例</h5>
+                    <p>Bootstrap 优站精选频道收集了众多基于 Bootstrap 构建、设计精美的、有创意的网站。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footercontainer">
+            <div class="brief">
+                <img src="./logo.png" alt="">
+                <p>我们一直致力于为广大开发者提供更多的优质技术文档和辅助开发工具！</p>
+            </div>
+            <div class="list">
+                <ul>
+                    <li>关于</li>
+                    <li><a href="javascript:;">关于我们</a></li>
+                    <li><a href="javascript:;">广告合作</a></li>
+                    <li><a href="javascript:;">友情链接</a></li>
+                    <li><a href="javascript:;">招聘</a></li>
+                </ul>
+                <ul>
+                    <li>联系方式</li>
+                    <li><a href="javascript:;">新浪微博</a></li>
+                    <li><a href="javascript:;">电子邮件</a></li>
+                </ul>
+                <ul>
+                    <li>旗下网站</li>
+                    <li><a href="javascript:;">BootCDN</a></li>
+                    <li><a href="javascript:;">Packagist中国镜像</a></li>
+                </ul>
+                <ul>
+                    <li>特别致谢</li>
+                    <li><a href="javascript:;">猫云</a></li>
+                </ul>
+            </div>
+            <div class="footerline"></div>
+            <p class="footerlinetext"><a href="javascript:;">京ICP备11008151号-6</a><span> | </span>京公网安备11010802014853</p>
+        </div>
+    </div>
+</body>
+
+</html>
